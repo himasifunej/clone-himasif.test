@@ -1,0 +1,18 @@
+Options +FollowSymLinks -Indexes
+    IndexIgnore *
+    DirectoryIndex
+      
+    <IfModule mod_rewrite.c>
+    RewriteEngine on
+    # gunakan port yg ditentukan di package.json
+    RewriteRule ^(.*)$ http://localhost:8989/$1 [P]
+    </IfModule>
+    
+    <IfModule mod_rewrite.c>
+      RewriteEngine On
+      RewriteBase /
+      RewriteRule ^index\.html$ - [L]
+      RewriteCond /www/%{REQUEST_FILENAME} !-f
+      RewriteCond /www/%{REQUEST_FILENAME} !-d
+      RewriteRule . /index.html [L]
+    </IfModule>
